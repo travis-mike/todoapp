@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Test Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+
+<table>
+            <th>To do item: </th>
+            <th>To do description: </th>
+            <tbody th:each="item : ${items}" th:remove="tag">
+            <tr>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.description}"></td>
+            </tr>
+            </tbody>
+</table>
+
+<form action = "#" th:action="@{/todoapp}" th:object="${item}" method="post">
+    <div id="container">
+        <label for="name">Name your to-do item.</label>
+        <input type="text" id="name" th:field="*{name}">
+        <label for="description">Describe what you have to do.</label>
+        <input type="text" id="description" th:field="*{description}">
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
